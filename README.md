@@ -159,10 +159,10 @@ bash /work/b11902043/PP25/setup.sh
 source ~/.bashrc # or restart terminal
 ```
 
-Replace the last line your sbatch script `hw1-bonus.sh` with `<INPUT>` string (Do not use any other input file), the judge system will replace `<INPUT>` string to actual testcases:
+We use `inputs/w12_b3lyp_cc-pvtz_energy.nw` as our final testcase. To submit your implementation, modify the last line of your `hw1-bonus.sh` to use absolute path of TA provided input (`/work/b11902043/PP25/hw1-bonus/inputs/w12_b3lyp_cc-pvtz_energy.nw`), any other input will lead to different result and will be considered invalid
 
 ```bash
-mpirun -np $SLURM_NTASKS $NWCHEM_TOP/bin/LINUX64/nwchem <INPUT>
+mpirun -np $SLURM_NTASKS $NWCHEM_TOP/bin/LINUX64/nwchem /work/b11902043/PP25/hw1-bonus/inputs/w12_b3lyp_cc-pvtz_energy.nw
 ```
 
 After that, you can run 

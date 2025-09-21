@@ -1,0 +1,42 @@
+echo
+
+start w1_b3lyp_cc-pvtz_energy
+
+memory stack 8000 mb heap 100 mb global 8000 mb noverify
+
+permanent_dir .
+scratch_dir /tmp
+
+geometry units angstrom
+  O      0.00000000     0.00000000     0.11726921
+  H      0.75698224     0.00000000    -0.46907685
+  H     -0.75698224     0.00000000    -0.46907685
+end
+
+basis "ao basis" spherical noprint
+  * library cc-pvtz
+end
+
+scf
+  direct
+  singlet
+  rhf
+  thresh 1e-7
+  maxiter 100
+  vectors input atomic output w1_scf_cc-pvtz.movecs
+  noprint "final vectors analysis" "final vector symmetries"
+end
+
+task scf energy ignore
+
+dft
+  direct
+  xc b3lyp
+  grid fine
+  iterations 100
+  vectors input w1_scf_cc-pvtz.movecs
+  noprint "final vectors analysis" "final vector symmetries"
+end
+
+task dft energy
+

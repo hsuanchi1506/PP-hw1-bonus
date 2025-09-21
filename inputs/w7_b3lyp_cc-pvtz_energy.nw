@@ -1,0 +1,60 @@
+echo
+
+start w7_b3lyp_cc-pvtz_energy
+
+memory stack 8000 mb heap 100 mb global 8000 mb noverify
+
+permanent_dir .
+scratch_dir /tmp
+
+geometry units angstrom
+  O      -0.46306507    -2.84560143     0.34712980
+  H      -0.31185448    -3.74723642     0.05234746
+  H      -0.60259983    -2.31575342    -0.47038548
+  O       1.84489062     0.25067396    -1.20027152
+  H       2.63515099     0.41824386    -1.72121662
+  H       1.46223315     1.13476086    -0.99006607
+  O      -0.36089385     1.06267739     1.87503037
+  H      -0.44058089     1.21621663     2.82039947
+  H       0.24249561     0.27291766     1.77033787
+  O       1.25770268    -0.94282108     1.34833194
+  H       0.73624113    -1.73036585     1.09041584
+  H       1.67299069    -0.65240393     0.51959506
+  O       0.51098073     2.46987019    -0.40854717
+  H       0.33154661     2.21905129     0.51484431
+  H      -0.36738878     2.41346155    -0.80745002
+  O      -0.68279808    -1.06009111    -1.69106587
+  H      -1.23658236    -0.35698007    -1.31005956
+  H       0.20346941    -0.66506167    -1.72575016
+  O      -2.06529537     1.02745574    -0.29419144
+  H      -1.67380330     0.97232115     0.60004746
+  H      -3.01776458     0.99606215    -0.16747231
+end
+
+basis "ao basis" spherical noprint
+  * library cc-pvtz
+end
+
+scf
+  direct
+  singlet
+  rhf
+  thresh 1e-7
+  maxiter 100
+  vectors input atomic output w7_scf_cc-pvtz.movecs
+  noprint "final vectors analysis" "final vector symmetries"
+end
+
+task scf energy ignore
+
+dft
+  direct
+  xc b3lyp
+  grid fine
+  iterations 100
+  vectors input w7_scf_cc-pvtz.movecs
+  noprint "final vectors analysis" "final vector symmetries"
+end
+
+task dft energy
+

@@ -37,6 +37,7 @@ The task flow contains 2 steps:
 - Algorithm alteration: Changing fundamental computational algorithms
 - Precision reduction: Lowering calculation accuracy or data precision
 - Input modification: Altering molecular geometries, basis sets, or convergence criteria
+- Do not try to create artificial output and time
 
 ### Provided Tools
 
